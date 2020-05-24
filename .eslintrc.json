@@ -19,8 +19,5 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": ["error", 4],
-        "comma-dangle": "off",
-        "semi": "off"
     }
 }
