@@ -33,7 +33,7 @@ jobs:
         run: echo "npm lint"
 
       - name: Unit tests
-        run: echo "npm test"
+        run: npm test
 
       - name: Integration tests
         run: echo "running integration tests"
