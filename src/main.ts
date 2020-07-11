@@ -1,9 +1,9 @@
-import './styles/main.scss'
+import "./styles/main.scss";
 
-console.log('IT WORKS!!!!!!')
+console.log("IT WORKS!!!!!!");
 
-function test () {
-  console.log('hello')
+function test() {
+  console.log("hello");
 }
 
-test()
+test();
