@@ -2,8 +2,10 @@ import "./styles/main.scss";
 
 console.log("IT WORKS!!!!!!");
 
-function test() {
+function testing() {
   console.log("hello");
 }
 
-test();
+export const test = "test";
+
+testing();
