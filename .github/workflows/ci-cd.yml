@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Continuous Integration
+name: Continuous Integration / Continuous Delivery
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -38,8 +38,13 @@ jobs:
       - name: Integration tests
         run: echo "running integration tests"
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: app-artifact
+          path: dist
+
       - name: Notify status
-        run: echo "notify channels"
+        run: echo "CI successful"
 
   CD:
     # The type of runner that the job will run on
@@ -50,8 +55,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
+      - uses: actions/download-artifact@v2
+        with:
+          name: app-artifact
+          path: build
+
+      - name: Structure of downloaded artifact
+        run: ls -R
+        working-directory: build
+
       - name: Deploy artifact
         run: echo "deploying artifact"
 
       - name: Notify status
-        run: echo "notify channels"
+        run: echo "CD successful"
