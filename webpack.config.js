@@ -27,6 +27,10 @@ module.exports = (env, argv) => ({
         ],
       },
       {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ["file-loader"],
+      },
+      {
         test: /\.ts$/,
         use: "ts-loader",
       },
