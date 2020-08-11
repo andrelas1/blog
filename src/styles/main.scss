@@ -1,3 +1,118 @@
-header {
-  background-color: blue;
+@font-face {
+  font-family: "Inconsolata";
+  src: url("../assets/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Inconsolata";
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > * {
+    width: 100%;
+    text-align: center;
+  }
+
+  header {
+    flex: 1;
+    text-align: center;
+    background-color: #ffe66d;
+  }
+
+  main {
+    font-weight: 300;
+    flex: 4;
+    text-align: justify;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    > * {
+      margin: 1em 0.8em;
+    }
+
+    section {
+      height: 100%;
+      article {
+        margin-bottom: 1.5em;
+        .article-content {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 4;
+          overflow: hidden;
+        }
+      }
+
+      &#articles {
+        h3 {
+          margin: 0;
+        }
+        p {
+          margin: 0;
+          margin-top: 0.2em;
+        }
+      }
+
+      &#other-articles {
+        h4 {
+          margin: 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    section#info {
+      margin-top: 0;
+      ul {
+        height: 100%;
+
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        li {
+          margin: 0.5em 0;
+          padding: 0 0.5em;
+          background-color: rgba($color: #4ecdc4, $alpha: 0.2);
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          i {
+            margin-right: 0.3em;
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    margin-top: 6vh;
+    flex: 1;
+    background-color: #a8dadc;
+    display: flex;
+    justify-content: center;
+    ul {
+      padding: 0;
+      width: 50%;
+      display: flex;
+      list-style: none;
+      justify-content: space-between;
+      li {
+        text-align: center;
+        align-self: center;
+      }
+    }
+    i {
+      font-size: 2em;
+    }
+  }
 }
