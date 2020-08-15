@@ -3,10 +3,22 @@
   src: url("../assets/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
 }
 
-body {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
+}
+
+body {
+  $lightblue: #a8dadc;
+  $smoke: #f1faee;
+  $red: #e63946;
+  $blue: #457b9d;
+  $darkblue: #1d3557;
+  $yellow: #ffe66d;
+  $white: #fff;
+
   font-family: "Inconsolata";
-  height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -21,16 +33,18 @@ body {
   header {
     flex: 1;
     text-align: center;
-    background-color: #ffe66d;
+    background-color: $darkblue;
+    color: $smoke;
   }
 
   main {
+    text-align: left;
     font-weight: 300;
     flex: 4;
-    text-align: justify;
-    background-color: white;
+    background-color: $white;
     display: flex;
     flex-direction: column;
+    padding: 0.5em 1em;
     > * {
       margin: 1em 0.8em;
     }
@@ -38,7 +52,7 @@ body {
     section {
       height: 100%;
       article {
-        margin-bottom: 1.5em;
+        margin-bottom: 2em;
         .article-content {
           display: -webkit-box;
           -webkit-box-orient: vertical;
@@ -50,6 +64,11 @@ body {
       &#articles {
         h3 {
           margin: 0;
+          margin-bottom: 0.5em;
+          font-weight: 900;
+          font-size: 2rem;
+          letter-spacing: 0;
+          color: $red;
         }
         p {
           margin: 0;
@@ -81,7 +100,7 @@ body {
         li {
           margin: 0.5em 0;
           padding: 0 0.5em;
-          background-color: rgba($color: #4ecdc4, $alpha: 0.2);
+          background-color: rgba($color: $lightblue, $alpha: 0.2);
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -95,9 +114,9 @@ body {
   }
 
   footer {
-    margin-top: 6vh;
+    margin-top: 2em;
     flex: 1;
-    background-color: #a8dadc;
+    background-color: $lightblue;
     display: flex;
     justify-content: center;
     ul {
