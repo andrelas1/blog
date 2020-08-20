@@ -9,21 +9,30 @@
   box-sizing: border-box;
 }
 
-body {
-  $lightblue: #a8dadc;
-  $smoke: #f1faee;
-  $red: #e63946;
-  $blue: #457b9d;
-  $darkblue: #1d3557;
-  $yellow: #ffe66d;
-  $white: #fff;
+$lightblue: #a8dadc;
+$smoke: #f1faee;
+$red: #e63946;
+$blue: #457b9d;
+$darkblue: #1d3557;
+$yellow: #ffe66d;
+$white: #fff;
 
-  font-family: "Inconsolata";
-  margin: 0;
+html {
+  display: flex;
+  justify-content: center;
+}
+
+body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin: 0;
+
+  max-width: 700px;
+
+  font-family: "Inconsolata";
 
   > * {
     width: 100%;
@@ -33,7 +42,7 @@ body {
   header {
     padding: 1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     flex: 1;
     background-color: $white;
@@ -47,6 +56,9 @@ body {
       border-radius: 40px;
     }
     .text {
+      padding-left: 1em;
+      flex: 1;
+      font-size: 1em;
       color: $darkblue;
       display: flex;
       flex-direction: column;
@@ -54,6 +66,12 @@ body {
       text-align: left;
       > * {
         margin: 0;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.2em;
       }
     }
   }
@@ -153,6 +171,16 @@ body {
     }
     i {
       font-size: 2em;
+    }
+  }
+}
+
+/* smartphones, touchscreens */
+@media (hover: hover) and (pointer: fine) and (min-width: 700px) {
+  body {
+    padding-top: 3em;
+    footer {
+      background-color: $white;
     }
   }
 }
