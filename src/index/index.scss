@@ -1,68 +1,19 @@
 @use '~/src/shared/styles/colors';
 @use "~/src/shared/styles/mixins";
 
-@font-face {
-  font-family: "Inconsolata";
-  src: url("../shared/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
-}
+@include fonts;
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+@include global;
 
 body {
   @include body;
 
   header {
-    padding: 1em;
-    display: flex;
-    justify-content: flex-start;
-
-    flex: 1;
-    background-color: $white;
-    color: $smoke;
-
-    .img {
-      background-image: url("../shared/images/perfil.png");
-      background-size: cover;
-      height: 80px;
-      width: 80px;
-      border-radius: 40px;
-    }
-    .text {
-      padding-left: 1em;
-      flex: 1;
-      font-size: 1em;
-      color: $darkblue;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: left;
-      > * {
-        margin: 0;
-      }
-      h1 {
-        font-size: 2em;
-      }
-      h2 {
-        font-size: 1.2em;
-      }
-    }
+    @include header;
   }
 
   main {
-    text-align: left;
-    font-weight: 300;
-    flex: 4;
-    background-color: $white;
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em 1em;
-    > * {
-      margin: 1em 0.8em;
-    }
+    @include main;
 
     section {
       height: 100%;
@@ -132,12 +83,4 @@ body {
   }
 }
 
-/* smartphones, touchscreens */
-@media (hover: hover) and (pointer: fine) and (min-width: 700px) {
-  body {
-    padding-top: 3em;
-    footer {
-      background-color: $white;
-    }
-  }
-}
+@include responsive-smartphones;
