@@ -1,0 +1,37 @@
+@use '~/src/shared/styles/colors';
+@use "~/src/shared/styles/mixins";
+
+@include fonts;
+
+@include global;
+
+header {
+  @include header;
+}
+body {
+  @include body;
+  main {
+    @include main;
+
+    section {
+      h2 {
+        margin: 0;
+        margin-bottom: 0.5em;
+        font-weight: 900;
+        font-size: 2em;
+        letter-spacing: 0;
+        color: $red;
+      }
+      p {
+        line-height: 1.5em;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+footer {
+  @include footer;
+}
+
+@include responsive-smartphones;

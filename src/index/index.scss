@@ -1,0 +1,86 @@
+@use '~/src/shared/styles/colors';
+@use "~/src/shared/styles/mixins";
+
+@include fonts;
+
+@include global;
+
+body {
+  @include body;
+
+  header {
+    @include header;
+  }
+
+  main {
+    @include main;
+
+    section {
+      height: 100%;
+      article {
+        margin-bottom: 2em;
+        .article-content {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 4;
+          overflow: hidden;
+        }
+      }
+
+      &#articles {
+        h3 {
+          margin: 0;
+          margin-bottom: 0.5em;
+          font-weight: 900;
+          font-size: 2rem;
+          letter-spacing: 0;
+          color: $red;
+        }
+        p {
+          margin: 0;
+          margin-top: 0.2em;
+        }
+      }
+
+      &#other-articles {
+        h4 {
+          margin: 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    section#info {
+      margin-top: 0;
+      ul {
+        height: 100%;
+
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        li {
+          margin: 0.5em 0;
+          padding: 0 0.5em;
+          background-color: rgba($color: $lightblue, $alpha: 0.2);
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          i {
+            margin-right: 0.3em;
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+  }
+  footer {
+    @include footer;
+  }
+}
+
+@include responsive-smartphones;

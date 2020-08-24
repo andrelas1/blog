@@ -3,13 +3,26 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+function recursiveIssuer(m) {
+  if (m.issuer) {
+    return recursiveIssuer(m.issuer);
+  } else if (m.name) {
+    return m.name;
+  } else {
+    return false;
+  }
+}
+
 module.exports = (env, argv) => ({
-  entry: "./src/main.ts",
+  entry: {
+    index: "./src/index/main.ts",
+    blogpost: "./src/blogpost/main.ts",
+  },
   devtool: argv.mode === "production" ? "" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.bundle.js",
+    filename: "[name].[hash].bundle.js",
   },
   module: {
     rules: [
@@ -24,6 +37,16 @@ module.exports = (env, argv) => ({
           "css-loader",
           // Compiles Sass to CSS
           "sass-loader",
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: [
+                "./src/shared/styles/colors.scss",
+                "./src/shared/styles/mixins.scss",
+                "./src/shared/styles/fonts.scss",
+              ],
+            },
+          },
         ],
       },
       {
@@ -52,7 +75,13 @@ module.exports = (env, argv) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "src/index/index.html",
+      chunks: ["index"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "blogpost.html",
+      template: "src/blogpost/blogpost.html",
+      chunks: ["blogpost"],
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
