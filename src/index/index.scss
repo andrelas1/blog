@@ -1,6 +1,9 @@
+@use '~/src/shared/styles/colors';
+@use "~/src/shared/styles/mixins";
+
 @font-face {
   font-family: "Inconsolata";
-  src: url("../assets/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
+  src: url("../shared/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
 }
 
 *,
@@ -9,32 +12,8 @@
   box-sizing: border-box;
 }
 
-$lightblue: #a8dadc;
-$smoke: #f1faee;
-$red: #e63946;
-$blue: #457b9d;
-$darkblue: #1d3557;
-$yellow: #ffe66d;
-$white: #fff;
-
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  margin: 0;
-
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 700px;
-
-  font-family: "Inconsolata";
-
-  > * {
-    width: 100%;
-    text-align: center;
-  }
+  @include body;
 
   header {
     padding: 1em;
@@ -46,7 +25,7 @@ body {
     color: $smoke;
 
     .img {
-      background-image: url("../assets/images/perfil.png");
+      background-image: url("../shared/images/perfil.png");
       background-size: cover;
       height: 80px;
       width: 80px;
@@ -148,27 +127,8 @@ body {
       }
     }
   }
-
   footer {
-    margin-top: 2em;
-    flex: 1;
-    background-color: $lightblue;
-    display: flex;
-    justify-content: center;
-    ul {
-      padding: 0;
-      width: 50%;
-      display: flex;
-      list-style: none;
-      justify-content: space-between;
-      li {
-        text-align: center;
-        align-self: center;
-      }
-    }
-    i {
-      font-size: 2em;
-    }
+    @include footer;
   }
 }
 
