@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 function recursiveIssuer(m) {
   if (m.issuer) {
@@ -82,6 +83,9 @@ module.exports = (env, argv) => ({
       filename: "blogpost.html",
       template: "src/blogpost/blogpost.html",
       chunks: ["blogpost"],
+    }),
+    new CopyPlugin({
+      patterns: [{ from: "src/admin", to: "admin" }],
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
