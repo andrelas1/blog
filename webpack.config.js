@@ -16,8 +16,8 @@ function recursiveIssuer(m) {
 
 module.exports = (env, argv) => ({
   entry: {
-    index: "./src/index/main.ts",
-    blogpost: "./src/blogpost/main.ts",
+    index: "./frontend/src/index/main.ts",
+    blogpost: "./frontend/src/blogpost/main.ts",
   },
   devtool: argv.mode === "production" ? "" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
@@ -42,9 +42,9 @@ module.exports = (env, argv) => ({
             loader: "sass-resources-loader",
             options: {
               resources: [
-                "./src/shared/styles/colors.scss",
-                "./src/shared/styles/mixins.scss",
-                "./src/shared/styles/fonts.scss",
+                "./frontend/src/shared/styles/colors.scss",
+                "./frontend/src/shared/styles/mixins.scss",
+                "./frontend//src/shared/styles/fonts.scss",
               ],
             },
           },
@@ -76,16 +76,13 @@ module.exports = (env, argv) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "src/index/index.html",
+      template: "./frontend/src/index/index.html",
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
       filename: "blogpost.html",
-      template: "src/blogpost/blogpost.html",
+      template: "./frontend/src/blogpost/blogpost.html",
       chunks: ["blogpost"],
-    }),
-    new CopyPlugin({
-      patterns: [{ from: "src/admin", to: "admin" }],
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
