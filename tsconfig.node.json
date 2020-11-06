@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "./dist/backend"
-  },
-  "include": ["backend/**/*"],
-  "exclude": ["backend/**/*.test.ts"]
-}

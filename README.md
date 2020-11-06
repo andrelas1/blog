@@ -30,3 +30,11 @@ https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 ## Restart or stop containers
 
 `docker stop bb`
+
+## Run ssh into a container
+
+`docker exec -it <container name> /bin/bash`
+
+## Run docker-compose and rebuild the image
+
+`docker-compose -f docker-compose.dev.yml up --build`

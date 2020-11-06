@@ -4,19 +4,19 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "dev": "webpack-dev-server --open",
-    "build": "webpack --mode=production",
+    "start:frontend": "webpack-dev-server --open",
+    "build:frontend": "webpack --mode=production",
     "lint": "eslint src/**/*.ts",
-    "tsc:backend": "tsc --project tsconfig.node.json",
-    "backend": "npm run tsc:backend && nodemon dist/backend/main.js",
-    "debug": "npm run tsc:backend && nodemon --inspect dist/backend/main.js"
+    "start:backend": "nodemon backend/src/main.ts",
+    "debug:backend": "nodemon --inspect backend/src/main.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.8",
     "express": "^4.17.1",
-    "jest": "^26.1.0"
+    "jest": "^26.1.0",
+    "ts-node": "^9.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
