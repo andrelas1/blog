@@ -8,8 +8,8 @@
     "build": "webpack --mode=production",
     "lint": "eslint src/**/*.ts",
     "tsc:backend": "tsc --project tsconfig.node.json",
-    "backend": "npm run tsc:backend && node dist/backend/main.js",
-    "debug": "npm run tsc:backend && node --inspect dist/backend/main.js"
+    "backend": "npm run tsc:backend && nodemon dist/backend/main.js",
+    "debug": "npm run tsc:backend && nodemon --inspect dist/backend/main.js"
   },
   "author": "",
   "license": "ISC",
