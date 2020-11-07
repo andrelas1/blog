@@ -17,8 +17,9 @@ services:
     # command: npm run debug
   mongodb:
     image: mongo:4.4.1
+    command: mongod --port 27018
     ports:
-      - 27017:27017
+      - 27018:27018
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
