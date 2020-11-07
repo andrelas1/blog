@@ -13,9 +13,6 @@ COPY ["package.json", "package-lock.json*", "./"]
 # Run the command inside your image filesystem.
 RUN npm install
 
-# Add metadata to the image to describe which port the container is listening on at runtime.
-EXPOSE 8001
-
 # Run the specified command within the container.
 CMD [ "npm", "run", "start:backend" ]
 
