@@ -44,7 +44,7 @@ module.exports = (env, argv) => ({
               resources: [
                 "./frontend/src/shared/styles/colors.scss",
                 "./frontend/src/shared/styles/mixins.scss",
-                "./frontend//src/shared/styles/fonts.scss",
+                "./frontend/src/shared/styles/fonts.scss",
               ],
             },
           },
