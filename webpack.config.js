@@ -4,16 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
-function recursiveIssuer(m) {
-  if (m.issuer) {
-    return recursiveIssuer(m.issuer);
-  } else if (m.name) {
-    return m.name;
-  } else {
-    return false;
-  }
-}
-
 module.exports = (env, argv) => ({
   entry: {
     index: "./frontend/src/index/main.ts",
@@ -22,8 +12,8 @@ module.exports = (env, argv) => ({
   devtool: argv.mode === "production" ? "" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash].bundle.js",
+    path: path.resolve(__dirname, "statics"),
+    filename: "[name]/[name].[hash].bundle.js",
   },
   module: {
     rules: [
@@ -76,16 +66,17 @@ module.exports = (env, argv) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      filename: "index/index.html",
       template: "./frontend/src/index/index.html",
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "blogpost.html",
+      filename: "blogpost/blogpost.html",
       template: "./frontend/src/blogpost/blogpost.html",
       chunks: ["blogpost"],
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "[name]/[name].css",
       chunkFilename: "[id].css",
     }),
   ],
