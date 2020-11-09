@@ -21,9 +21,7 @@ module.exports = (env, argv) => ({
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          argv.mode === "production"
-            ? MiniCssExtractPlugin.loader
-            : "style-loader",
+          "style-loader",
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
@@ -66,18 +64,18 @@ module.exports = (env, argv) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: "index/index.html",
-      template: "./frontend/src/index/index.html",
+      filename: "index/index.ejs",
+      template: "!!raw-loader!frontend/src/index/index.ejs",
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "blogpost/blogpost.html",
-      template: "./frontend/src/blogpost/blogpost.html",
+      filename: "blogpost/blogpost.ejs",
+      template: "!!raw-loader!frontend/src/blogpost/blogpost.ejs",
       chunks: ["blogpost"],
     }),
-    new MiniCssExtractPlugin({
-      filename: "[name]/[name].css",
-      chunkFilename: "[id].css",
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: "[name]/[name].css",
+    //   chunkFilename: "[id].css",
+    // }),
   ],
 });
