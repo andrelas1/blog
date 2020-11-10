@@ -14,7 +14,7 @@ services:
       - SERVER_PORT=8001
       - DATABASE_CONNECTIONSTRING=mongodb://mongo:27017/blog
       - NODE_ENV=production
-    # command: npm run debug
+    command: npm start
   mongodb:
     image: mongo:4.4.1
     command: mongod --port 27018
