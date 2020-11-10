@@ -1,8 +1,8 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+// const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, argv) => ({
   entry: {
@@ -44,7 +44,10 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.ts$/,
-        use: "ts-loader",
+        loader: "ts-loader",
+        options: {
+          configFile: "tsconfig.webpack.json",
+        },
       },
       {
         test: /\.(png|jpe?g|gif)$/i,

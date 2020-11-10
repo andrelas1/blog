@@ -1,5 +1,9 @@
 import * as express from "express";
-import * as ejs from "ejs";
+import { json, urlencoded } from "body-parser";
+import * as morgan from "morgan";
+
+import { blogpostRouteController, indexRouteController } from "./routes";
+import { serverStaticsMW, templateMW } from "./middlewares";
 
 const app = express();
 const port = 3000;
@@ -7,31 +11,24 @@ const staticsPath = process.cwd() + "/statics";
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  app.use(express.static(`${staticsPath}`));
-  app.use("/index", express.static(`${staticsPath}/index`));
+app.use(json());
+app.use(urlencoded({ extended: true }));
+app.use(morgan("dev"));
 
-  ejs.renderFile(`${staticsPath}/index/index.ejs`, (err, template) => {
-    if (err) {
-      console.log("ERROR", err);
-    } else {
-      res.end(template);
-    }
-  });
-});
+// routes
+app.use(
+  "/",
+  serverStaticsMW(app, "/", [staticsPath]),
+  templateMW(`${staticsPath}/index/index.ejs`),
+  indexRouteController
+);
 
-app.get("/blogpost", (req, res) => {
-  app.use("/blogpost", express.static(`${staticsPath}`));
-  app.use("/blogpost", express.static(`${staticsPath}/blogpost`));
-
-  ejs.renderFile(`${staticsPath}/blogpost/blogpost.ejs`, (err, template) => {
-    if (err) {
-      console.log("ERROR", err);
-    } else {
-      res.end(template);
-    }
-  });
-});
+app.use(
+  "/blogpost",
+  serverStaticsMW(app, "blogpost", [`${staticsPath}`]),
+  templateMW(`${staticsPath}/blogpost/blogpost.ejs`),
+  blogpostRouteController
+);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
