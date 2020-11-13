@@ -2,7 +2,7 @@ import * as express from "express";
 import { json, urlencoded } from "body-parser";
 import * as morgan from "morgan";
 
-import { blogpostRouteController, indexRouteController } from "./routes";
+import { blogpostRouteController, homeRouteController } from "./resources";
 import { serverStaticsMW, templateMW } from "./middlewares";
 
 const app = express();
@@ -22,7 +22,7 @@ app.use(
   "/",
   serverStaticsMW(app, "/", [staticsPath]),
   templateMW(`${staticsPath}/index/index.ejs`),
-  indexRouteController
+  homeRouteController
 );
 
 // TODO: register these two middlewares in the router??
