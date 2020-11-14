@@ -1,7 +1,20 @@
 version: "3.8"
 
 services:
+  mongodb:
+    container_name: blog_db
+    image: mongo:4.4.1
+    command: mongod --port 27018
+    ports:
+      - 27018:27018
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
   blog-backend:
+    restart: always
+    container_name: blog_nodejs
+    depends_on:
+      - mongodb
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,18 +24,10 @@ services:
       - 3000:3000
       - 9229:9229
     environment:
-      - SERVER_PORT=8001
-      - DATABASE_CONNECTIONSTRING=mongodb://mongo:27017/blog
+      - SERVER_PORT=3000
+      - DATABASE_CONNECTIONSTRING=mongodb://mongodb:27018/blog
       - NODE_ENV=production
     command: npm start
-  mongodb:
-    image: mongo:4.4.1
-    command: mongod --port 27018
-    ports:
-      - 27018:27018
-    volumes:
-      - mongodb:/data/db
-      - mongodb_config:/data/configdb
 volumes:
   mongodb:
   mongodb_config:
