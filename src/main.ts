@@ -3,12 +3,7 @@ import { json, urlencoded } from "body-parser";
 import * as morgan from "morgan";
 import * as mongoose from "mongoose";
 
-import {
-  BlogpostModel,
-  blogpostRouteController,
-  blogpostSchema,
-  homeRouteController,
-} from "./resources";
+import { blogpostRouteController, homeRouteController } from "./resources";
 import { serverStaticsMW, templateMW } from "./middlewares";
 
 const app = express();
@@ -21,7 +16,8 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-mongoose.connect("mongodb://mongodb:27018/blog", {
+// open connection to database
+mongoose.connect(process.env.DATABASE_CONNECTIONSTRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -38,7 +34,6 @@ db.once("open", (res) => {
 
 // routes
 
-// TODO: register these two middlewares in the router??
 app.use(
   "/",
   serverStaticsMW(app, "/", [staticsPath]),
@@ -46,7 +41,6 @@ app.use(
   homeRouteController
 );
 
-// TODO: register these two middlewares in the router??
 app.use(
   "/blogpost",
   serverStaticsMW(app, "blogpost", [`${staticsPath}`]),
@@ -54,37 +48,6 @@ app.use(
   blogpostRouteController
 );
 
-// create API requests with router.route
-const router = express.Router();
-
-router
-  .route("/blog")
-  .get((req, res, next) => {
-    res.send({ test: "test" });
-  })
-  .post((req, res, next) => {
-    // const title = req.body.title;
-    console.log("CARAIOOOO", req.body.title);
-    const blogPostOne = new BlogpostModel({
-      title: req.body.title,
-      subtitle: "subtitle 1",
-      content: "hbiuhgiuhbhuia",
-      subject: "webdev",
-      published: true,
-    });
-    blogPostOne.save((err) => {
-      if (err) {
-        res.status(500).json({ ok: "not ok", err });
-      }
-
-      res.status(200).json({ ok: "ok" });
-    });
-  });
-
-app.use("/api", router);
-
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
-
-console.log("ENV VARIABVLE", process.env.DATABASE_CONNECTIONSTRING);
