@@ -1,5 +1,6 @@
 [
   {
+    "slug": "one-post-title",
     "title": "This is one post title",
     "subtitle": "This is one post subtitle",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor libero, elementum ornare sem id, malesuada congue arcu. Cras eu augue magna. Aliquam eget neque lobortis, placerat dui vitae, sollicitudin nisi. Mauris imperdiet vehicula elit, non iaculis magna facilisis vel. Maecenas volutpat dictum tortor at scelerisque. Aliquam condimentum mauris lectus, sit amet efficitur tellus molestie a. In id erat turpis. Fusce porttitor nisi eros, ut cursus orci rutrum vitae.",
@@ -7,6 +8,7 @@
     "published": true
   },
   {
+    "slug": "another-post-title",
     "title": "This is another post title",
     "subtitle": "This is one post subtitle",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor libero, elementum ornare sem id, malesuada congue arcu. Cras eu augue magna. Aliquam eget neque lobortis, placerat dui vitae, sollicitudin nisi. Mauris imperdiet vehicula elit, non iaculis magna facilisis vel. Maecenas volutpat dictum tortor at scelerisque. Aliquam condimentum mauris lectus, sit amet efficitur tellus molestie a. In id erat turpis. Fusce porttitor nisi eros, ut cursus orci rutrum vitae.",
@@ -14,6 +16,7 @@
     "published": false
   },
   {
+    "slug": "yet-another-post-title",
     "title": "This is yet another post title",
     "subtitle": "This is one post subtitle",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor libero, elementum ornare sem id, malesuada congue arcu. Cras eu augue magna. Aliquam eget neque lobortis, placerat dui vitae, sollicitudin nisi. Mauris imperdiet vehicula elit, non iaculis magna facilisis vel. Maecenas volutpat dictum tortor at scelerisque. Aliquam condimentum mauris lectus, sit amet efficitur tellus molestie a. In id erat turpis. Fusce porttitor nisi eros, ut cursus orci rutrum vitae.",

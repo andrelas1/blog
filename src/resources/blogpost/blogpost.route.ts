@@ -1,9 +1,21 @@
-import * as express from "express";
+import * as ejs from "ejs";
 
-const router = express.Router();
+import { BlogpostModel } from "./blogpost.model";
 
-const blogpostController = (req, res, _) => {
-  res.end(res.locals.template);
+const r = /(js|css|ttf|png)$/gm;
+
+export const blogpostsRouteController = async (req, res, next) => {
+  console.log("PATGH PORRA", req.params.path);
+  const blogpost = await BlogpostModel.findOne({ slug: req.params.path });
+  if (blogpost && !r.test(req.url)) {
+    ejs.renderFile(res.locals.templatePath, blogpost, (err, template) => {
+      if (err) {
+        next(err);
+      } else {
+        res.end(template);
+      }
+    });
+  } else {
+    res.end();
+  }
 };
-
-export const blogpostRouteController = router.get("/", blogpostController);

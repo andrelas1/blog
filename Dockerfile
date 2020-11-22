@@ -1,5 +1,5 @@
 # Use the official image as a parent image.
-FROM node:14.15.0
+FROM node:14.15.1
 
 # Improve performance in Nodejs
 ENV NODE_ENV=production

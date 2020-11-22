@@ -13,7 +13,7 @@ module.exports = (env, argv) => ({
   mode: argv.mode === "production" ? "production" : "development",
   output: {
     path: path.resolve(__dirname, "statics"),
-    filename: "[name]/[name].[hash].bundle.js",
+    filename: "[name].[hash].bundle.js",
   },
   module: {
     rules: [
@@ -67,12 +67,12 @@ module.exports = (env, argv) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: "index/index.ejs",
+      filename: "index.ejs",
       template: "!!raw-loader!frontend/src/index/index.ejs",
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "blogpost/blogpost.ejs",
+      filename: "blogpost.ejs",
       template: "!!raw-loader!frontend/src/blogpost/blogpost.ejs",
       chunks: ["blogpost"],
     }),

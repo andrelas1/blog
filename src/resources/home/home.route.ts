@@ -1,11 +1,17 @@
-import * as express from "express";
+import * as ejs from "ejs";
 
-const router = express.Router();
+import { HomeModel } from "./home.model";
 
-export const homeRouteController = router.get("/", function homeCOntroller(
-  req,
-  res,
-  next
-) {
-  res.end(res.locals.template);
-});
+export async function homeRouteController(req, res, next) {
+  const home = await HomeModel.findOne({ site: "andrelas1" });
+  console.log("HOME", home);
+  if (home) {
+    ejs.renderFile(res.locals.templatePath, home, (err, template) => {
+      if (err) {
+        next(err);
+      } else {
+        res.end(template);
+      }
+    });
+  }
+}

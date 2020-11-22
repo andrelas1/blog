@@ -27,7 +27,7 @@ services:
       - SERVER_PORT=3000
       - DATABASE_CONNECTIONSTRING=mongodb://mongodb:27018/blog
       - NODE_ENV=production
-    command: npm start
+    command: npm run start:backend
 volumes:
   mongodb:
   mongodb_config:

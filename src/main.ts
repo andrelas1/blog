@@ -3,51 +3,55 @@ import { json, urlencoded } from "body-parser";
 import * as morgan from "morgan";
 import * as mongoose from "mongoose";
 
-import { blogpostRouteController, homeRouteController } from "./resources";
+import { blogpostsRouteController, homeRouteController } from "./resources";
 import { serverStaticsMW, templateMW } from "./middlewares";
 
-const app = express();
-const port = 3000;
-const staticsPath = process.cwd() + "/statics";
+function app() {
+  const app = express();
+  const port = 3000;
+  const staticsPath = process.cwd() + "/statics";
 
-app.set("view engine", "ejs");
+  app.set("view engine", "ejs");
 
-app.use(json());
-app.use(urlencoded({ extended: true }));
-app.use(morgan("dev"));
+  app.use(json());
+  app.use(urlencoded({ extended: true }));
+  app.use(morgan("dev"));
 
-// open connection to database
-mongoose.connect(process.env.DATABASE_CONNECTIONSTRING, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+  // open connection to database
+  function connectToDb() {
+    mongoose.connect(process.env.DATABASE_CONNECTIONSTRING, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    return mongoose.connection;
+  }
 
-const db = mongoose.connection;
+  const db = connectToDb();
 
-db.on("error", (err) => {
-  console.error("CONNECTION ERROR", err);
-});
+  db.on("error", (err) => {
+    console.error("CONNECTION ERROR", err);
+    console.log("trying to connect again...");
+  });
 
-db.once("open", (res) => {
-  console.log("CONNECTED!!!", res);
-});
+  db.once("open", (res) => {
+    console.log("CONNECTED!!!", res);
+  });
 
-// routes
+  app.use(express.static(`${process.cwd()}/statics`));
+  // routes
 
-app.use(
-  "/",
-  serverStaticsMW(app, "/", [staticsPath]),
-  templateMW(`${staticsPath}/index/index.ejs`),
-  homeRouteController
-);
+  app.get("/", templateMW(`${staticsPath}/index.ejs`), homeRouteController);
 
-app.use(
-  "/blogpost",
-  serverStaticsMW(app, "blogpost", [`${staticsPath}`]),
-  templateMW(`${staticsPath}/blogpost/blogpost.ejs`),
-  blogpostRouteController
-);
+  app.get(
+    "/blogposts/:path",
+    serverStaticsMW(),
+    templateMW(`${staticsPath}/blogpost.ejs`),
+    blogpostsRouteController
+  );
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
-});
+  app.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`);
+  });
+}
+
+app();

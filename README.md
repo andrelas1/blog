@@ -9,6 +9,20 @@
 
 https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
+# Getting started
+
+Requirements:
+
+- Docker
+
+run:
+
+- `docker-compose -f docker-compose.dev.yml up --build`
+
+This will start the backend docker image (the express server) and the database in MongoDB.
+
+Access the app in `locahost:3000`
+
 # Docker handy commands
 
 ## Build image
