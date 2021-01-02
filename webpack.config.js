@@ -1,18 +1,8 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-
-function recursiveIssuer(m) {
-  if (m.issuer) {
-    return recursiveIssuer(m.issuer);
-  } else if (m.name) {
-    return m.name;
-  } else {
-    return false;
-  }
-}
+// const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, argv) => ({
   entry: {
@@ -22,7 +12,7 @@ module.exports = (env, argv) => ({
   devtool: argv.mode === "production" ? "" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "statics"),
     filename: "[name].[hash].bundle.js",
   },
   module: {
@@ -31,9 +21,7 @@ module.exports = (env, argv) => ({
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          argv.mode === "production"
-            ? MiniCssExtractPlugin.loader
-            : "style-loader",
+          "style-loader",
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
@@ -56,7 +44,10 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.ts$/,
-        use: "ts-loader",
+        loader: "ts-loader",
+        options: {
+          configFile: "tsconfig.webpack.json",
+        },
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -76,17 +67,18 @@ module.exports = (env, argv) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./frontend/src/index/index.html",
+      filename: "index.ejs",
+      template: "!!raw-loader!frontend/src/index/index.ejs",
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "blogpost.html",
-      template: "./frontend/src/blogpost/blogpost.html",
+      filename: "blogpost.ejs",
+      template: "!!raw-loader!frontend/src/blogpost/blogpost.ejs",
       chunks: ["blogpost"],
     }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css",
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: "[name]/[name].css",
+    //   chunkFilename: "[id].css",
+    // }),
   ],
 });

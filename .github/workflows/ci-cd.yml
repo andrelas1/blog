@@ -29,6 +29,9 @@ jobs:
       - name: Build project
         run: npm run build:frontend
 
+      - name: Type check files
+        run: npm run tsc
+
       - name: Lint check
         run: echo "npm lint"
 
