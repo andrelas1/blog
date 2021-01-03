@@ -38,11 +38,7 @@ Wait a bit and the app should be exposed on `localhost:3000`
 
 ## Development with a local MongoDB
 
-To develop without the MongoDB container, run:
-
-`docker run --publish 8001:8001 --name bb blog-backend:1.0`
-
-This will run only the backend, but make sure that the code in docker-compose.dev.yml has the correct configuration to connect to the local MongoDB database.
+-- TBD --
 
 # Handy Docker commands
 
