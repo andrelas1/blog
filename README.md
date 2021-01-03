@@ -17,23 +17,9 @@ One could think that it's a waste of time not using tools like Gatsby or NextJS 
 
 https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
-# Getting started
-
-Requirements:
-
-- Docker
-
-run:
-
-- `docker-compose -f docker-compose.dev.yml up --build`
-
-This will start the backend docker image (the express server) and the database in MongoDB.
-
-Access the app in `locahost:3000`
-
 # Local development
 
-For local development, this project uses Docker. It's nice to have MongoDB in a Docker container instead of in the local machine. That gives the possibility to deploy the containers instead of the code, but that is an option that is not being used for deployment.
+For local development, this project uses Docker. It's nice to have MongoDB in a Docker container instead of it in the local machine. That gives the possibility to deploy the containers instead of the code, but that is an option that is not being used for deployment.
 
 ## Requirements for development
 
@@ -47,6 +33,8 @@ For development, run:
 - `docker-compose -f docker-compose.dev.yml up --build`
 
 This command will spin up the NodeJS app container as well as the MongoDB container for development. This uses the `docker-compose.dev.yml` file, making sure that the MongoDB container is created before the NodeJS app.
+
+Wait a bit and the app should be exposed on `localhost:3000`
 
 ## Development with a local MongoDB
 
