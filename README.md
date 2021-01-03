@@ -30,7 +30,7 @@ For local development, this project uses Docker. It's nice to have MongoDB in a 
 
 For development, run:
 
-- `docker-compose -f docker-compose.dev.yml up --build`
+- `docker-compose --env-file ./src/config/dev/.env -f docker-compose.dev.yml up --build`
 
 This command will spin up the NodeJS app container as well as the MongoDB container for development. This uses the `docker-compose.dev.yml` file, making sure that the MongoDB container is created before the NodeJS app.
 

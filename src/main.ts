@@ -7,8 +7,10 @@ import { blogpostsRouteController, homeRouteController } from "./resources";
 import { serverStaticsMW, templateMW } from "./middlewares";
 
 function app() {
+  console.log("ENV VARIABLEs");
+  console.log(process.env);
   const app = express();
-  const port = 3000;
+  const port = process.env.SERVER_PORT;
   const staticsPath = process.cwd() + "/statics";
 
   app.set("view engine", "ejs");

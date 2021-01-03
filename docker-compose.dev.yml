@@ -4,9 +4,9 @@ services:
   mongodb:
     container_name: blog_db
     image: mongo:4.4.1
-    command: mongod --port 27018
+    command: "mongod --port ${DB_PORT}"
     ports:
-      - 27018:27018
+      - "${DB_PORT}:${DB_PORT}"
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
@@ -21,12 +21,8 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - 3000:3000
-      - 9229:9229
-    environment:
-      - SERVER_PORT=3000
-      - DATABASE_CONNECTIONSTRING=mongodb://mongodb:27018/blog
-      - NODE_ENV=production
+      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${SERVER_DEBUG_PORT}:${SERVER_DEBUG_PORT}"
     command: npm run start:backend
 volumes:
   mongodb:
