@@ -28,13 +28,22 @@ For local development, this project uses Docker. It's nice to have MongoDB in a 
 
 ## Development
 
-For development, run:
+### Run the app
 
 - `docker-compose --env-file ./src/config/dev/.env -f docker-compose.dev.yml up --build`
 
 This command will spin up the NodeJS app container as well as the MongoDB container for development. This uses the `docker-compose.dev.yml` file, making sure that the MongoDB container is created before the NodeJS app.
 
 Wait a bit and the app should be exposed on `localhost:3000`
+
+### Setup mocked MongoDB data
+
+This app needs some data on the MongoDB instance in order to show some UI. To add data to the MongoDB container, run the following commands with the Mongo Shell:
+
+- `mongo --port=27018`
+- `use blog`
+- `db.blogposts.insertMany([the objects listed in blogposts.json file])`
+- `db.blogposts.insertOne(the object in home.json)`
 
 ## Development with a local MongoDB
 
