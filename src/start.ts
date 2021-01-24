@@ -1,3 +1,11 @@
+/**
+ * Not being used but could be useful to:
+ *
+ * 1. setup database mocked data
+ * 2. setup website metadata (see home.json)
+ * 3. run docker command to spin up app and db container
+ * */
+
 import { exec } from "child_process";
 
 const start = () => {
