@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pr:
+  branches:
+    include:
+    - '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0 
+  inputs:
+    versionSpec: '12.x'
+
+- script: npm install
+  displayName: 'Install dependencies'
+
+- script: npm test
+  displayName: 'Run unit tests'
+
+- script: npm run tsc
+  displayName: 'Type check files'
+
+- script: echo "lint files"
+  displayName: 'Lint check files'
+
+- script: npm run build:frontend
+  displayName: 'Build the frontend templates with EJS'
+
+- script: echo "integration tests"
+  displayName: 'Exec integration tests'
+
+- script: echo "Notify channels"
+  displayName: 'Notifying channels'
