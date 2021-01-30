@@ -21,8 +21,8 @@ fse.copySync(`${root}/package.json`, `${root}/app/package.json`);
 fse.copySync(`${root}/package-lock.json`, `${root}/app/package-lock.json`);
 
 // copy node_modules
-const npmInstall = spawn("npm", ["install"], { cwd: process.cwd() + "/app" });
+// const npmInstall = spawn("npm", ["install"], { cwd: process.cwd() + "/app" });
 
-npmInstall.stdout.on("data", (data) => {
-  console.log(`stdout: ${data}`);
-});
+// npmInstall.stdout.on("data", (data) => {
+//   console.log(`stdout: ${data}`);
+// });

@@ -34,6 +34,10 @@ jobs:
       - script: npm run gen-artifact
         displayName: "Generate app artifact"
 
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathToPublish: app
+
       - script: echo "deploying to acceptance"
         displayName: "Deploy to acceptance environment slot"
 
