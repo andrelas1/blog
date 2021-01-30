@@ -31,21 +31,8 @@ jobs:
       - script: npm run build:frontend
         displayName: "Build the frontend templates with EJS"
 
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathToPublish: src
-
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathToPublish: statics
-
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathToPublish: package.json
-
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathToPublish: package-lock.json
+      - script: npm run gen-artifact
+        displayName: "Generate app artifact"
 
       - script: echo "deploying to acceptance"
         displayName: "Deploy to acceptance environment slot"
