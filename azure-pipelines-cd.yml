@@ -34,11 +34,6 @@ jobs:
       - script: npm run gen-artifact
         displayName: "Generate app artifact"
 
-      - task: CopyFiles@2
-        inputs:
-          sourceFolder: node_modules
-          targetFolder: app/node_modules
-
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: app
