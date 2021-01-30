@@ -5,8 +5,9 @@
 
 name: CD
 
+pr: none
+
 trigger:
-  pr: none
   branches:
     include:
       - master
