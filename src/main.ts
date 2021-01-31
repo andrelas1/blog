@@ -10,7 +10,7 @@ function app() {
   console.log("ENV VARIABLEs");
   console.log(process.env);
   const app = express();
-  const port = process.env.SERVER_PORT;
+  const port = process.env.PORT;
   const staticsPath = process.cwd() + "/statics";
 
   app.set("view engine", "ejs");
