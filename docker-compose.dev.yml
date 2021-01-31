@@ -23,7 +23,7 @@ services:
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
       - "${SERVER_DEBUG_PORT}:${SERVER_DEBUG_PORT}"
-    command: npm run start:backend
+    command: npm run dev:backend
 volumes:
   mongodb:
   mongodb_config:
