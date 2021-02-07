@@ -21,7 +21,7 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${PORT}:${PORT}"
       - "${SERVER_DEBUG_PORT}:${SERVER_DEBUG_PORT}"
     command: npm run dev:backend
 volumes:

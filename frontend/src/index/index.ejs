@@ -23,45 +23,14 @@
     </header>
     <main>
       <section id="articles">
-        <article id="article-first">
-          <h3 class="article-header">This is a NICE post about stuff</h3>
+        <% blogposts.forEach(function(blogpost, index){ %>
+        <article id="article-<%- index %>" data-slug="<%- blogpost.slug %>">
+          <h3 class="article-header"><%- blogpost.title %></h3>
           <p class="article-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor
-            libero, elementum ornare sem id, malesuada congue arcu. Cras eu
-            augue magna. Aliquam eget neque lobortis, placerat dui vitae,
-            sollicitudin nisi. Mauris imperdiet vehicula elit, non iaculis magna
-            facilisis vel. Maecenas volutpat dictum tortor at scelerisque.
-            Aliquam condimentum mauris lectus, sit amet efficitur tellus
-            molestie a. In id erat turpis. Fusce porttitor nisi eros, ut cursus
-            orci rutrum vitae.<a>See more...</a>
+            <%- blogpost.content %><a>See more...</a>
           </p>
         </article>
-        <article id="article-second">
-          <h3 class="article-div">Not sure, which title?</h3>
-          <p class="article-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor
-            libero, elementum ornare sem id, malesuada congue arcu. Cras eu
-            augue magna. Aliquam eget neque lobortis, placerat dui vitae,
-            sollicitudin nisi. Mauris imperdiet vehicula elit, non iaculis magna
-            facilisis vel. Maecenas volutpat dictum tortor at scelerisque.
-            Aliquam condimentum mauris lectus, sit amet efficitur tellus
-            molestie a. In id erat turpis. Fusce porttitor nisi eros, ut cursus
-            orci rutrum vitae.<a>See more...</a>
-          </p>
-        </article>
-        <article id="article-third">
-          <h3 class="article-header">Hmmm, this font is cooooooll!!!</h3>
-          <p class="article-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor
-            libero, elementum ornare sem id, malesuada congue arcu. Cras eu
-            augue magna. Aliquam eget neque lobortis, placerat dui vitae,
-            sollicitudin nisi. Mauris imperdiet vehicula elit, non iaculis magna
-            facilisis vel. Maecenas volutpat dictum tortor at scelerisque.
-            Aliquam condimentum mauris lectus, sit amet efficitur tellus
-            molestie a. In id erat turpis. Fusce porttitor nisi eros, ut cursus
-            orci rutrum vitae.<a>See more...</a>
-          </p>
-        </article>
+        <% }); %>
       </section>
 
       <section id="info">
