@@ -99,7 +99,7 @@
 
 @mixin fonts {
   @font-face {
-    font-family: "Inconsolata";
+    font-family: "Inconsolata", "Merriweather", "Georgia", serif;
     src: url("../shared/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
   }
 }
