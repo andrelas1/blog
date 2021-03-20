@@ -14,7 +14,7 @@ body {
     @include main;
 
     section {
-      h2 {
+      h1 {
         margin: 0;
         margin-bottom: 0.5em;
         font-weight: 900;
@@ -22,7 +22,16 @@ body {
         letter-spacing: 0;
         color: $red;
       }
+      h2 {
+        margin: 0;
+        margin-bottom: 0.5em;
+        font-weight: 200;
+        font-size: 1.5em;
+        letter-spacing: 0;
+        color: $red;
+      }
       p {
+        font-size: 1.1em;
         line-height: 1.5em;
         font-weight: 400;
       }

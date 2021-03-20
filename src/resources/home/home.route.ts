@@ -13,7 +13,7 @@ export async function homeRouteController(req, res, next) {
     site: home.site,
     blogposts,
   };
-  console.log("template data", templateData);
+
   if (home) {
     ejs.renderFile(res.locals.templatePath, templateData, (err, template) => {
       if (err) {
