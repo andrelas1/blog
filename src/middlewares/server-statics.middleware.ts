@@ -6,7 +6,7 @@ export const serverStaticsMW = () => (req, res, next) => {
   // });
   console.log("MIDDLEWARE REQ URL", req.url);
   if (regexStaticsExtensions.test(req.url)) {
-    console.log('requst', req.url);
+    console.log("requst", req.url);
     res.sendFile(
       `${process.cwd()}/statics/${req.url.split("/").reverse()[0]}`,
       {},
