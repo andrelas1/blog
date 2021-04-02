@@ -25,7 +25,5 @@ export const blogpostsRouteController = async (req, res, next) => {
         res.end(template);
       }
     });
-  } else {
-    res.end();
   }
 };

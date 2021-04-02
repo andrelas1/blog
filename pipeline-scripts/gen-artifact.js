@@ -1,8 +1,6 @@
 const fse = require("fs-extra");
-const { spawn } = require("child_process");
 
 const root = process.cwd();
-console.log("ROOOT", root);
 
 const appFolder = "./app";
 
