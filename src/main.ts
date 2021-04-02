@@ -4,7 +4,7 @@ import * as morgan from "morgan";
 import * as mongoose from "mongoose";
 
 import { blogpostsRouteController, homeRouteController } from "./resources";
-import { serverStaticsMW, templateMW } from "./middlewares";
+import { templateMW } from "./middlewares";
 
 function app() {
   const app = express();
@@ -37,14 +37,17 @@ function app() {
     console.log("CONNECTED!!!", res);
   });
 
-  app.use(express.static(`${process.cwd()}/statics`));
+  // statics
+  const staticsFileSystemPath = `${process.cwd()}/statics`;
+  app.use(express.static(staticsFileSystemPath));
+  app.use("/blogposts", express.static(staticsFileSystemPath));
+
   // routes
 
   app.get("/", templateMW(`${staticsPath}/index.ejs`), homeRouteController);
 
   app.get(
     "/blogposts/:path",
-    serverStaticsMW(),
     templateMW(`${staticsPath}/blogpost.ejs`),
     blogpostsRouteController
   );
