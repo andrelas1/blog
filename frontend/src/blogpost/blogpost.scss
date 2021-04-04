@@ -5,6 +5,10 @@
 
 @include global;
 
+#header-link {
+  text-decoration: none;
+}
+
 header {
   @include header;
 }
