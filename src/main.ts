@@ -3,7 +3,11 @@ import { json, urlencoded } from "body-parser";
 import * as morgan from "morgan";
 import * as mongoose from "mongoose";
 
-import { blogpostsRouteController, homeRouteController } from "./resources";
+import {
+  aboutMeRouteController,
+  blogpostsRouteController,
+  homeRouteController,
+} from "./resources";
 import { templateMW } from "./middlewares";
 
 function app() {
@@ -50,6 +54,12 @@ function app() {
     "/blogposts/:path",
     templateMW(`${staticsPath}/blogpost.ejs`),
     blogpostsRouteController
+  );
+
+  app.get(
+    "/about-me",
+    templateMW(`${staticsPath}/about-me.ejs`),
+    aboutMeRouteController
   );
 
   app.listen(port, () => {

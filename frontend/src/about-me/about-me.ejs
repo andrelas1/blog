@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="About Andre Santos (andrelas1), Curriculum Vitae, CV"
+    />
+    <title>andrelas1</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <script
+      async
+      src="https://kit.fontawesome.com/3c9a665878.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <a href="/" id="header-link">
+      <header id="header">
+        <div class="img"></div>
+        <div class="text">
+          <h1>André Luis Araujo Santos</h1>
+          <h2>About Me</h2>
+        </div>
+      </header>
+    </a>
+    <main>
+      <section id="profile">
+        <h3>Intro</h3>
+        <article>
+          <p>
+            <%- profile %>
+          </p>
+        </article>
+      </section>
+
+      <section id="work-experience">
+        <h3>Experience</h3>
+        <% workExperiences.forEach(function(experience, index){ %>
+        <article id="experience-<%- index %>">
+          <header>
+            <h4><%- experience.title %></h4>
+          </header>
+          <div class="description">
+            <p>
+              <%- experience.description %>
+            </p>
+          </div>
+          <footer>
+            <ul>
+              <% experience.stack.forEach(function(stack, index){ %>
+              <li><%- stack.technology %></li>
+              <% }); %>
+            </ul>
+          </footer>
+        </article>
+
+        <% }); %>
+      </section>
+
+      <section id="education">
+        <h3>Education</h3>
+        <% educationExperiences.forEach(function(experience, index){ %>
+        <article id="experience-<%- index %>">
+          <header>
+            <p>
+              <strong><%- experience.description %></strong> @ <%-
+              experience.title %>
+            </p>
+          </header>
+        </article>
+
+        <% }); %>
+      </section>
+
+      <section id="languages">
+        <h3>Languages</h3>
+        <ul>
+          <% languages.forEach(function(language, index){ %>
+          <li>
+            <span><%- language.name %></span> -
+            <span><%- language.level %></span>
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h3>Skills</h3>
+        <ul>
+          <% skills.forEach(function(skill, index){ %>
+          <li>
+            <span><%- skill.name %></span> -
+            <span><%- skill.level %></span>
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <ul>
+        <li>
+          <a
+            href="mailto:andre.santos0906@gmail.com"
+            alt="email"
+            target="_blank"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://twitter.com/andresantos_09"
+            alt="twitter"
+            target="_blank"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/andrelas1" alt="github" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/andrelas/"
+            alt="linkedin"
+            target="_blank"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

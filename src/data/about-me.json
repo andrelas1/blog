@@ -1,0 +1,57 @@
+{
+  "profile": "Software Developer specialized in the frontend part of web development. Passionate about working with people, solving challenges and helping the organization in reaching its goals.\n\nI like to work with:\n- JavaScript in the frontend;\n- NodeJS for the backend;\nOther interests:\n- Functional Programming\n- Data Science (with Python);\n- Design patterns.\n\nI was also an environmental engineer for 3 years.",
+  "skills": [
+    {
+      "name": "javascript",
+      "level": "proficient"
+    },
+    {
+      "name": "html",
+      "level": "proficient"
+    },
+    {
+      "name": "css",
+      "level": "proficient"
+    }
+  ],
+  "experiences": [
+    {
+      "type": "work",
+      "description": "Development of the frontend development platform, used by hundreds of engineers to develop, build and deploy frontend apps to production. This platform offers generic frontend libraries, development tooling as well as CI/CD pipelines for the frontend.",
+      "title": "Frontend Engineer at Rabobank",
+      "stack": ["JavaScript", "TypeScript", "Angular", "SCSS"]
+    },
+    {
+      "type": "work",
+      "description": "Development of the frontend development platform, used by hundreds of engineers to develop, build and deploy frontend apps to production. This platform offers generic frontend libraries, development tooling as well as CI/CD pipelines for the frontend.",
+      "title": "Frontend Engineer at Rabobank",
+      "stack": ["JavaScript", "TypeScript", "Angular", "SCSS"]
+    },
+    {
+      "type": "work",
+      "description": "Development of the frontend development platform, used by hundreds of engineers to develop, build and deploy frontend apps to production. This platform offers generic frontend libraries, development tooling as well as CI/CD pipelines for the frontend.",
+      "title": "Frontend Engineer at Rabobank",
+      "stack": ["JavaScript", "TypeScript", "Angular", "SCSS"]
+    },
+    {
+      "type": "education",
+      "description": "Engenharia Ambiental e Sanitária",
+      "title": "Universidade de Fortaleza, 2009-2014"
+    },
+    {
+      "type": "education",
+      "description": "Engenharia Ambiental e Sanitária",
+      "title": "Universidade de Fortaleza, 2009-2014"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "proficient"
+    },
+    {
+      "name": "Portuguese",
+      "level": "native"
+    }
+  ]
+}
