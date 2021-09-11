@@ -1,5 +1,7 @@
 import "./index.scss";
 
+import { initAnalytics } from "../shared/analytics";
+
 const articles = document.getElementById("articles");
 
 articles.querySelectorAll("article").forEach((article) => {
@@ -8,3 +10,5 @@ articles.querySelectorAll("article").forEach((article) => {
     document.location.href = "blogposts/" + slug;
   });
 });
+
+initAnalytics();
