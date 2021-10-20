@@ -60,6 +60,10 @@ body {
 
 footer {
   @include footer;
+  ul {
+    width: 100%;
+    justify-content: space-evenly;
+  }
 }
 
 @include responsive-smartphones;
