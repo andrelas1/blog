@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/usr/src/app
+      - ./:/usr/src/app
     ports:
       - "${PORT}:${PORT}"
       - "${SERVER_DEBUG_PORT}:${SERVER_DEBUG_PORT}"

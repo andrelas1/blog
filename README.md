@@ -30,7 +30,7 @@ For local development, this project uses Docker. It's nice to have MongoDB in a 
 
 ### Run the app
 
-- `docker-compose --env-file ./src/config/dev/.env -f docker-compose.dev.yml up --build`
+- `npm start`
 
 This command will spin up the NodeJS app container as well as the MongoDB container for development. This uses the `docker-compose.dev.yml` file, making sure that the MongoDB container is created before the NodeJS app.
 
@@ -44,10 +44,6 @@ This app needs some data on the MongoDB instance in order to show some UI. To ad
 - `use blog`
 - `db.blogposts.insertMany([the objects listed in blogposts.json file])`
 - `db.blogposts.insertOne(the object in home.json)`
-
-## Development with a local MongoDB
-
--- TBD --
 
 # Handy Docker commands
 

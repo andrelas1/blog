@@ -6,10 +6,13 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const WebpackBuildNotifierPlugin = require("webpack-build-notifier");
+
 module.exports = (env, argv) => ({
   entry: {
     index: "./frontend/src/index/main.ts",
     blogpost: "./frontend/src/blogpost/main.ts",
+    aboutme: "./frontend/src/about-me/main.ts",
   },
   devtool: argv.mode === "production" ? "" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
@@ -79,9 +82,17 @@ module.exports = (env, argv) => ({
       template: "!!raw-loader!frontend/src/blogpost/blogpost.ejs",
       chunks: ["blogpost"],
     }),
+    new HtmlWebpackPlugin({
+      filename: "about-me.ejs",
+      template: "!!raw-loader!frontend/src/about-me/about-me.ejs",
+      chunks: ["aboutme"],
+    }),
     // new MiniCssExtractPlugin({
     //   filename: "[name]/[name].css",
     //   chunkFilename: "[id].css",
     // }),
+    new WebpackBuildNotifierPlugin({
+      suppressWarning: true,
+    }),
   ],
 });

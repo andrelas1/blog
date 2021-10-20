@@ -1,0 +1,65 @@
+@use '~/src/shared/styles/colors';
+@use "~/src/shared/styles/mixins";
+
+@include fonts;
+
+@include global;
+
+#header-link {
+  text-decoration: none;
+}
+
+header {
+  @include header;
+
+  h4 {
+    color: $darkblue;
+  }
+  p {
+    color: black;
+  }
+}
+body {
+  @include body;
+  main {
+    @include main;
+
+    header {
+      padding: 0;
+    }
+
+    section {
+      h1 {
+        margin: 0;
+        margin-bottom: 0.5em;
+        font-weight: 900;
+        font-size: 2em;
+        letter-spacing: 0;
+        color: $red;
+      }
+      h2 {
+        margin: 0;
+        margin-bottom: 0.5em;
+        font-weight: 200;
+        font-size: 1.5em;
+        letter-spacing: 0;
+        color: $red;
+      }
+      p {
+        font-size: 1.1em;
+        line-height: 1.5em;
+        font-weight: 400;
+      }
+
+      h3 {
+        color: $red;
+      }
+    }
+  }
+}
+
+footer {
+  @include footer;
+}
+
+@include responsive-smartphones;
