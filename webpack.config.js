@@ -14,7 +14,8 @@ module.exports = (env, argv) => ({
     blogpost: "./frontend/src/blogpost/main.ts",
     aboutme: "./frontend/src/about-me/main.ts",
   },
-  devtool: argv.mode === "production" ? "" : "inline-source-map",
+  devtool:
+    argv.mode === "production" ? "hidden-source-map" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
   output: {
     path: path.resolve(__dirname, "statics"),
@@ -31,16 +32,15 @@ module.exports = (env, argv) => ({
           "css-loader",
           // Compiles Sass to CSS
           "sass-loader",
-          {
-            loader: "sass-resources-loader",
-            options: {
-              resources: [
-                "./frontend/src/shared/styles/colors.scss",
-                "./frontend/src/shared/styles/mixins.scss",
-                "./frontend/src/shared/styles/fonts.scss",
-              ],
-            },
-          },
+          // {
+          //   loader: "sass-resources-loader",
+          //   options: {
+          //     resources: [
+          //       "./frontend/src/shared/styles/colors.scss",
+          //       "./frontend/src/shared/styles/mixins.scss",
+          //     ],
+          //   },
+          // },
         ],
       },
       {
