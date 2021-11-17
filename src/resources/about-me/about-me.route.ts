@@ -1,18 +1,12 @@
 import * as ejs from "ejs";
 import { ExperienceModel, LanguageModel } from ".";
 
-import {
-  AboutMeModel,
-  EducationModel,
-  SkillModel,
-  StackModel,
-} from "./about-me.model";
+import { AboutMeModel, SkillModel, StackModel } from "./about-me.model";
 
 declare module "mongoose" {
   export interface Document {
     title?: string;
     description?: string;
-    _id: Object;
     type?: string;
     stack?: { ref: Object }[];
     technology?: string;
@@ -28,6 +22,7 @@ export async function aboutMeRouteController(req, res, next) {
   const skills = await SkillModel.find({});
   const stacks = await StackModel.find({});
 
+  console.log("EXPERIENCES", experiences);
   const templateData = {
     profile: aboutMe.get("profile"),
     workExperiences: experiences
