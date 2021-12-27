@@ -12,7 +12,6 @@ declare module "mongoose" {
   export interface Document {
     title?: string;
     description?: string;
-    _id: Object;
     type?: string;
     stack?: { ref: Object }[];
     technology?: string;
