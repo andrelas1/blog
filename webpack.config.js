@@ -31,16 +31,16 @@ module.exports = (env, argv) => ({
           "css-loader",
           // Compiles Sass to CSS
           "sass-loader",
-          {
-            loader: "sass-resources-loader",
-            options: {
-              resources: [
-                "./frontend/src/shared/styles/colors.scss",
-                "./frontend/src/shared/styles/mixins.scss",
-                "./frontend/src/shared/styles/fonts.scss",
-              ],
-            },
-          },
+          // {
+          //   loader: "sass-resources-loader",
+          //   options: {
+          //     resources: [
+          //       "./frontend/src/shared/styles/colors.scss",
+          //       "./frontend/src/shared/styles/mixins.scss",
+          //       "./frontend/src/shared/styles/fonts.scss",
+          //     ],
+          //   },
+          // },
         ],
       },
       {

@@ -1,5 +1,5 @@
-@use '~/src/shared/styles/colors';
-@use "~/src/shared/styles/mixins";
+@import "../shared/styles/colors";
+@import "../shared/styles/mixins";
 
 @include fonts;
 
