@@ -30,7 +30,7 @@ For local development, this project uses Docker. It's nice to have MongoDB in a 
 
 ### Run the app
 
-- `npm start`
+- `npm server`
 
 This command will spin up the NodeJS app container as well as the MongoDB container for development. This uses the `docker-compose.dev.yml` file, making sure that the MongoDB container is created before the NodeJS app.
 
