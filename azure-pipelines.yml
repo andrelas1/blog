@@ -8,7 +8,7 @@ name: CI
 trigger: none
 
 pr:
-  - master
+  - main
 
 pool:
   vmImage: "ubuntu-latest"
