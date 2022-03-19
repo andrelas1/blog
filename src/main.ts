@@ -1,7 +1,7 @@
-import * as express from "express";
+import sanityClient from "@sanity/client";
+import express from "express";
 import { json, urlencoded } from "body-parser";
-import * as morgan from "morgan";
-import * as mongoose from "mongoose";
+import morgan from "morgan";
 
 import {
   aboutMeRouteController,
@@ -9,8 +9,18 @@ import {
   homeRouteController,
 } from "./resources";
 import { templateMW } from "./middlewares";
+import { cmsMW } from "./middlewares/cms.middleware";
 
 function app() {
+  // Sanity login
+  const client = sanityClient({
+    projectId: process.env.SANITY_PROJECT_ID,
+    dataset: process.env.SANITY_DATASET,
+    apiVersion: "2022-03-19", // use current UTC date - see "specifying API version"!
+    token: process.env.SANITY_TOKEN,
+    useCdn: true, // `false` if you want to ensure fresh data
+  });
+
   const app = express();
   const port = process.env.PORT;
   const staticsPath = process.cwd() + "/statics";
@@ -22,24 +32,24 @@ function app() {
   app.use(morgan("dev"));
 
   // open connection to database
-  function connectToDb() {
-    mongoose.connect(process.env.DATABASE_CONNECTIONSTRING, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    return mongoose.connection;
-  }
+  // function connectToDb() {
+  //   mongoose.connect(process.env.DATABASE_CONNECTIONSTRING, {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //   });
+  //   return mongoose.connection;
+  // }
 
-  const db = connectToDb();
+  // const db = connectToDb();
 
-  db.on("error", (err) => {
-    console.error("CONNECTION ERROR", err);
-    console.log("trying to connect again...");
-  });
+  // db.on("error", (err) => {
+  //   console.error("CONNECTION ERROR", err);
+  //   console.log("trying to connect again...");
+  // });
 
-  db.once("open", (res) => {
-    console.log("CONNECTED!!!", res);
-  });
+  // db.once("open", (res) => {
+  //   console.log("CONNECTED!!!", res);
+  // });
 
   // statics
   const staticsFileSystemPath = `${process.cwd()}/statics`;
@@ -48,24 +58,29 @@ function app() {
 
   // routes
 
-  app.get("/", templateMW(`${staticsPath}/index.ejs`), homeRouteController);
+  app.get(
+    "/",
+    cmsMW(client),
+    templateMW(`${staticsPath}/index.ejs`),
+    homeRouteController
+  );
 
   app.get(
     "/blogposts/:path",
     templateMW(`${staticsPath}/blogpost.ejs`),
+    cmsMW(client),
     blogpostsRouteController
   );
 
   app.get(
     "/about-me",
     templateMW(`${staticsPath}/about-me.ejs`),
+    cmsMW(client),
     aboutMeRouteController
   );
 
   app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
-    console.log("DB PORT", process.env.DB_PORT);
-    console.log("DB CONNECTION STRING", process.env.DATABASE_CONNECTIONSTRING);
     console.log("NODE ENV", process.env.NODE_ENV);
   });
 }

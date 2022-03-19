@@ -4,3 +4,4 @@ dist
 statics
 app
 .vscode
+src/config/prod

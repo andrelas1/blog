@@ -1,26 +1,21 @@
 import * as ejs from "ejs";
-import { BlogpostModel } from "../blogpost/blogpost.model";
-
-import { HomeModel } from "./home.model";
 
 export async function homeRouteController(req, res, next) {
-  // TODO: would be nice to type this
-  const home = (await HomeModel.findOne({ site: "andrelas1" })) as any;
-  const blogposts = await BlogpostModel.find({});
+  const blogposts = res.locals.cmsData;
+
   const templateData = {
-    title: home.title,
-    subtitle: home.subtitle,
-    site: home.site,
+    title: "andrelas1",
+    subtitle:
+      "Thoughts and ideas about IT, movies, life, books and other things.",
+    site: "andrelas1",
     blogposts,
   };
 
-  if (home) {
-    ejs.renderFile(res.locals.templatePath, templateData, (err, template) => {
-      if (err) {
-        next(err);
-      } else {
-        res.end(template);
-      }
-    });
-  }
+  ejs.renderFile(res.locals.templatePath, templateData, (err, template) => {
+    if (err) {
+      next(err);
+    } else {
+      res.end(template);
+    }
+  });
 }
