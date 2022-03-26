@@ -18,6 +18,9 @@ fse.copySync(`${root}/package.json`, `${root}/app/package.json`);
 // copy package-lock.json
 fse.copySync(`${root}/package-lock.json`, `${root}/app/package-lock.json`);
 
+// copy tsconfig.json
+fse.copySync(`${root}/tsconfig.json`, `${root}/app/tsconfig.json`);
+
 // copy node_modules
 // const npmInstall = spawn("npm", ["install", "--only=prod"], { cwd: process.cwd() + "/app" });
 
