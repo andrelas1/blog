@@ -10,7 +10,7 @@
     "build:frontend": "webpack --mode=production",
     "lint": "eslint src/**/*.ts",
     "dev:backend": "nodemon -r dotenv/config  src/main.ts dotenv_config_path=src/config/dev/.env",
-    "prod:backend": "NODE_ENV=production ts-node -r dotenv/config src/main.ts dotenv_config_path=src/config/prod/.env",
+    "prod:backend": "ts-node src/main.ts",
     "debug:backend": "nodemon --inspect src/main.ts",
     "tsc": "tsc --project tsconfig.json --noEmit",
     "gen-artifact": "node pipeline-scripts/gen-artifact.js"
