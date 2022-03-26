@@ -51,8 +51,8 @@
           </div>
           <footer>
             <ul>
-              <% experience.stack.forEach(function(stack, index){ %>
-              <li><%- stack.technology %></li>
+              <% experience.skills.forEach(function(skill, index){ %>
+              <li><%- skill.name %></li>
               <% }); %>
             </ul>
           </footer>
@@ -67,8 +67,7 @@
         <article id="experience-<%- index %>">
           <header>
             <p>
-              <strong><%- experience.description %></strong> @ <%-
-              experience.title %>
+              <strong><%- experience.description %></strong>
             </p>
           </header>
         </article>

@@ -1,21 +1,18 @@
 import * as ejs from "ejs";
 import * as showdown from "showdown";
 
-import { BlogpostModel } from "./blogpost.model";
-
 const r = /(js|css|ttf|png)$/gm;
 
 export const blogpostsRouteController = async (req, res, next) => {
   const converter = new showdown.Converter();
 
-  const blogpost = await BlogpostModel.findOne({ slug: req.params.path });
+  const blogpost = res.locals.cmsData;
 
   if (blogpost && !r.test(req.url)) {
-    const content = blogpost.get("content");
-    const htmlContent = converter.makeHtml(content);
+    const htmlContent = converter.makeHtml(blogpost.body);
     const data = {
-      title: blogpost.get("title"),
-      subtitle: blogpost.get("subtitle"),
+      title: blogpost.title,
+      subtitle: blogpost.subtitle,
       content: htmlContent,
     };
     ejs.renderFile(res.locals.templatePath, data, (err, template) => {
