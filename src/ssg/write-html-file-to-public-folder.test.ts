@@ -27,12 +27,12 @@ describe("writeHtmlFilesToPublicFolder", () => {
     };
 
     const mockStaticsPath = "test-statics-path";
-    const mockPublicPath = "test-public-path";
+    const mockPublicPath = "test-public-path/";
 
     writeHtmlFileToPublicFolder(mockStaticsPath, mockPublicPath, mockBlogpost);
 
     expect(fs.writeFileSync).toHaveBeenCalledWith(
-      `${mockPublicPath}/${mockBlogpost.url}.html`,
+      mockPublicPath,
       expect.any(String),
       expect.any(Object)
     );
