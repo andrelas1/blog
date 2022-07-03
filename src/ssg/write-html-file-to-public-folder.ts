@@ -1,17 +1,38 @@
 import * as ejs from "ejs";
-import { writeFileSync } from "fs";
+import { writeFileSync, accessSync, mkdirSync } from "fs";
 
 export const writeHtmlFileToPublicFolder = (
   templatePath,
-  publicPath,
+  outputFilePath,
   blogpost
 ) => {
   ejs.renderFile(templatePath, blogpost, (err, template) => {
     if (err) console.error("Error creating the html files", err);
 
-    // write the html to the file
-    writeFileSync(publicPath, template, {
-      flag: "w",
-    });
+    const outputFolder = outputFilePath.split("/").slice(0, -1).join("/");
+    if (directoryExists(outputFolder)) {
+      writeFileSync(outputFilePath, template, {
+        flag: "w",
+      });
+    } else {
+      console.info("Creating directory", outputFolder);
+      mkdirSync(outputFolder);
+
+      writeFileSync(outputFilePath, template, {
+        flag: "w",
+      });
+    }
   });
 };
+
+function directoryExists(dirPath: string) {
+  let result = false;
+  try {
+    accessSync(dirPath);
+    result = true;
+  } catch (e) {
+    console.error("Directory does not exists", e);
+  }
+
+  return result;
+}

@@ -1,19 +1,30 @@
 name: CD
+
 on:
   push:
     branches:
       - main
+
 jobs:
   generate-statics-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      SANITY_ID: ${{ secrets.SANITY_ID }}
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+      SANITY_TOKEN: ${{ secrets.SANITY_TOKEN }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      GITHUB_WORKSPACE: ${{ github.workspace }}
+      NETLIFY_WEBSITE_NAME: ${{ secrets.NETLIFY_WEBSITE_NAME }}
+
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner and the workspace is ${{ github.workspace }}."
       - name: Instal dependencies
         run: npm install
       - name: Generate templates
@@ -22,4 +33,6 @@ jobs:
         run: npm run build
       - name: Deploy
         run: npm run deploy
-      - run: echo "🍏 This job's status is ${{ job.status }}.
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash

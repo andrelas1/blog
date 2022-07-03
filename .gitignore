@@ -1,7 +1,6 @@
 node_modules
 .idea
 dist
-statics
 app
 .vscode
 src/config/prod
@@ -11,3 +10,4 @@ ssg-with-blogposts.webpack.config.js
 
 # Local Netlify folder
 .netlify
+website.zip

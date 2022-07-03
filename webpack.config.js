@@ -3,7 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const fs = require("fs");
 
-const blogpostsHtmlFilesFolder = `${process.cwd()}/src/ssg/html-files`;
+const blogpostsHtmlFilesFolder = `${
+  process.env.GITHUB_WORKSPACE || process.cwd()
+}/src/ssg/html-files`;
 const files = fs
   .readdirSync(blogpostsHtmlFilesFolder)
   .filter((file) => !file.startsWith("index") && !file.startsWith("about-me"));

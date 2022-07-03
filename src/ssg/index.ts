@@ -26,8 +26,12 @@ type SanityCredentials = {
 };
 type GenerateStatics = (sanityCredentials: SanityCredentials) => void;
 
-const staticsPath = process.cwd() + "/statics";
-const outputFolder = process.cwd() + "/src/ssg/html-files";
+const templatesPath = `${
+  process.env.GITHUB_WORKSPACE || process.cwd()
+}/templates`;
+const outputFolder = `${
+  process.env.GITHUB_WORKSPACE || process.cwd()
+}/src/ssg/html-files`;
 
 const generateStatics: GenerateStatics = async ({
   projectId,
@@ -83,20 +87,20 @@ const generateStatics: GenerateStatics = async ({
   // write files to public folder
   blogposts.forEach((blogpost) => {
     writeHtmlFileToPublicFolder(
-      `${staticsPath}/blogpost.ejs`,
+      `${templatesPath}/blogpost.ejs`,
       `${outputFolder}/${blogpost.url}.html`,
       blogpost
     );
   });
 
   writeHtmlFileToPublicFolder(
-    `${staticsPath}/index.ejs`,
+    `${templatesPath}/index.ejs`,
     `${outputFolder}/index.html`,
     index
   );
 
   writeHtmlFileToPublicFolder(
-    `${staticsPath}/about-me.ejs`,
+    `${templatesPath}/about-me.ejs`,
     `${outputFolder}/about-me.html`,
     aboutMe
   );
