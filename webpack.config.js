@@ -1,8 +1,12 @@
 const path = require("path");
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-// const CopyPlugin = require("copy-webpack-plugin");
+const fs = require("fs");
+
+const blogpostsHtmlFilesFolder = `${process.cwd()}/src/ssg/html-files`;
+const files = fs
+  .readdirSync(blogpostsHtmlFilesFolder)
+  .filter((file) => !file.startsWith("index") && !file.startsWith("about-me"));
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -17,7 +21,7 @@ module.exports = (env, argv) => ({
   devtool: argv.mode === "production" ? "" : "inline-source-map",
   mode: argv.mode === "production" ? "production" : "development",
   output: {
-    path: path.resolve(__dirname, "statics"),
+    path: path.resolve(__dirname, "public"),
     filename: "[name].[hash].bundle.js",
   },
   module: {
@@ -31,16 +35,6 @@ module.exports = (env, argv) => ({
           "css-loader",
           // Compiles Sass to CSS
           "sass-loader",
-          // {
-          //   loader: "sass-resources-loader",
-          //   options: {
-          //     resources: [
-          //       "./frontend/src/shared/styles/colors.scss",
-          //       "./frontend/src/shared/styles/mixins.scss",
-          //       "./frontend/src/shared/styles/fonts.scss",
-          //     ],
-          //   },
-          // },
         ],
       },
       {
@@ -73,24 +67,23 @@ module.exports = (env, argv) => ({
     new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: "index.ejs",
-      template: "!!raw-loader!frontend/src/index/index.ejs",
+      filename: "index.html",
+      template: "!!raw-loader!src/ssg/html-files/index.html",
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "blogpost.ejs",
-      template: "!!raw-loader!frontend/src/blogpost/blogpost.ejs",
-      chunks: ["blogpost"],
-    }),
-    new HtmlWebpackPlugin({
-      filename: "about-me.ejs",
-      template: "!!raw-loader!frontend/src/about-me/about-me.ejs",
+      filename: "about-me.html",
+      template: "!!raw-loader!src/ssg/html-files/about-me.html",
       chunks: ["aboutme"],
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: "[name]/[name].css",
-    //   chunkFilename: "[id].css",
-    // }),
+    ...files.map(
+      (fileName) =>
+        new HtmlWebpackPlugin({
+          filename: `blogposts/${fileName}`,
+          template: `!!raw-loader!src/ssg/html-files/${fileName}`,
+          chunks: ["blogpost"],
+        })
+    ),
     new WebpackBuildNotifierPlugin({
       suppressWarning: true,
     }),
