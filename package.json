@@ -4,6 +4,10 @@
   "description": "",
   "scripts": {
     "test": "jest",
+    "ssg": "ts-node -r dotenv/config src/ssg/index.ts dotenv_config_path=src/config/prod/.env",
+    "prebuild": "rimraf public && mkdir public",
+    "build": "webpack --config ssg.webpack.config.js --mode=production",
+    "deploy": "netlify deploy --prod",
     "test:all": "jest test --watchAll",
     "server": "docker-compose --env-file ./src/config/dev/.env -f docker-compose.dev.yml up --build",
     "dev:frontend": "watch 'npm run build:frontend' ./frontend --ignoreDotFiles",
@@ -60,6 +64,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.2.5",
     "mini-css-extract-plugin": "^0.9.0",
+    "netlify-cli": "^10.7.1",
     "prettier": "2.0.5",
     "raw-loader": "^4.0.2",
     "sass": "^1.45.1",

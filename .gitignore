@@ -5,3 +5,9 @@ statics
 app
 .vscode
 src/config/prod
+src/ssg/html-files
+public
+ssg-with-blogposts.webpack.config.js
+
+# Local Netlify folder
+.netlify
