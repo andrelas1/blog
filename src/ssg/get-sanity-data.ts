@@ -1,7 +1,8 @@
 export async function getBlogpostData(client) {
-  return await client.fetch(
-    `*[_type=='post'] { title, slug, categories, mainImage, body, subtitle }`
+  const data = await client.fetch(
+    `*[_type=='post'] { _id, title, slug, categories, mainImage, body, subtitle }`
   );
+  return data.filter((post) => post._id.indexOf("drafts") === -1);
 }
 
 export async function getHomepageData(client) {
