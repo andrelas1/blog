@@ -1,17 +1,12 @@
 # My Blog
 
-- Server-side rendered with NodeJS 12 LTS
-- No frontend frameworks. This uses as much as possible Web APIs
-- CSS libraries would be good to save time
+I am using SSG to generate all statics on build time.
 
 ## Notes
 
-One could think that it's a waste of time not using tools like Gatsby or NextJS to develop a blog. However, I didn't go that path because I wanted to use what the browser already gives natively. Also, I prefer to learn more about the native features of JS, CSS and HTML instead of using abstractions like the frameworks listed above. The other reasons:
+It was an option to use Gatsby, Nuxt or Remix to develop this blog but I really dislike migrations and solving NPM deps issues so I tried to not use any of those tools.
 
-- Dependency on these tools
-- Less flexibility
-- Learn the technology, not the tool
-- Easier to maintain compatibility as the browser evolves
+However I still can simplify the build process.
 
 # Color Palette
 
@@ -19,49 +14,23 @@ https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
 # Local development
 
-For local development, this project uses Docker. It's nice to have MongoDB in a Docker container instead of it in the local machine. That gives the possibility to deploy the containers instead of the code, but that is an option that is not being used for deployment.
+`npm run ssg-local`
 
-## Requirements for development
+Some environment variables are needed:
 
-1. Make sure Docker is installed
-2. Make sure the image is built. If it is not, run `docker build --tag blog-backend:1.0 .`
+```
+# The Netlify dashboard should have those values
+NETLIFY_AUTH_TOKEN
+NETLIFY_WEBSITE_NAME
 
-## Development
 
-### Run the app
+# The  Sanity dashboard should have those values
+SANITY_PROJECT_ID
+SANITY_DATASET
+SANITY_TOKEN
+```
 
-- `npm server`
-
-This command will spin up the NodeJS app container as well as the MongoDB container for development. This uses the `docker-compose.dev.yml` file, making sure that the MongoDB container is created before the NodeJS app.
-
-Wait a bit and the app should be exposed on `localhost:3000`
-
-### Setup mocked MongoDB data
-
-This app needs some data on the MongoDB instance in order to show some UI. To add data to the MongoDB container, run the following commands with the Mongo Shell:
-
-- `mongo --port=27018`
-- `use blog`
-- `db.blogposts.insertMany([the objects listed in blogposts.json file])`
-- `db.blogposts.insertOne(the object in home.json)`
-
-# Handy Docker commands
-
-## Delete container
-
-`docker rm --force bb`
-
-## Check containers
-
-`docker ps -a`
-
-## Restart or stop containers
-
-`docker stop bb`
-
-## Run ssh into a container
-
-`docker exec -it <container name> /bin/bash`
+template:
 
 # Deployment
 

@@ -22,6 +22,7 @@ export const writeHtmlFileToPublicFolder = (
         flag: "w",
       });
     }
+    console.log("GENERATED:", outputFilePath);
   });
 };
 
