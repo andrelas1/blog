@@ -4,17 +4,14 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "ssg-local": "ts-node -r dotenv/config src/ssg/index.ts dotenv_config_path=src/config/prod/.env",
     "ssg": "ts-node src/ssg/index.ts",
-    "ssg-backup": "SANITY_ID=$npm_config_sanity_id SANITY_DATASET=$npm_config_dataset SANITY_TOKEN=$npm_config_token ts-node src/ssg/index.ts",
     "prebuild": "rimraf public && mkdir public",
     "build": "webpack --config webpack.config.js --mode=production",
-    "deploy-local": "netlify deploy --prod --dir=public",
+    "deploy:local": "netlify deploy --prod --dir=public",
     "deploy": "node cicd/netlify-deploy.js",
-    "dev:frontend": "watch 'npm run build:frontend' ./frontend --ignoreDotFiles",
-    "build:frontend": "webpack --mode=production",
     "lint": "eslint src/**/*.ts",
-    "tsc": "tsc --project tsconfig.json --noEmit"
+    "tsc": "tsc --project tsconfig.json --noEmit",
+    "serve": "http-server"
   },
   "author": "",
   "license": "ISC",
@@ -48,6 +45,7 @@
     "file-loader": "^5.1.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "http-server": "^14.1.1",
     "husky": "^4.2.5",
     "mini-css-extract-plugin": "^0.9.0",
     "netlify-cli": "^8.14.1",

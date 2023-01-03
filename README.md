@@ -14,7 +14,9 @@ https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
 # Local development
 
-`npm run ssg-local`
+Generate the html template => `npm run ssg`
+Build the assets with the html template => `npm run build`
+Serve the assets in the /public folder =>`npm run serve`
 
 Some environment variables are needed:
 
