@@ -75,13 +75,7 @@ const generateStatics: GenerateStatics = async ({
   )[0];
 
   const aboutMe = {
-    profile,
-    workExperiences: experience.map((exp) =>
-      exp.skills ? exp : { ...exp, skills: [] }
-    ),
-    educationExperiences: educations,
-    skills,
-    languages,
+    profile: createHtmlFromMarkdown(toMarkdown(profile)),
   };
 
   // write files to public folder

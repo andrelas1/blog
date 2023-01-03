@@ -57,3 +57,8 @@ Since this project uses Docker, one could think that deploying only the containe
 3. Flexibility
 
 In the future, there is still the possibility to deploy using something like Docker Compose in Azure (https://docs.microsoft.com/en-us/azure/container-instances/tutorial-docker-compose). Or another option would be to deploy both containers separately, also using something like Azure (https://docs.docker.com/engine/context/aci-integration/ or https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart).
+
+### TODO
+
+1. Add pictures to the blog posts
+2. Run the build every time there is a new or updated post in the CMS

@@ -29,76 +29,14 @@
     </a>
     <main>
       <section id="profile">
-        <h3>Intro</h3>
         <article>
-          <p>
+          <div class="content">
             <%- profile %>
-          </p>
-        </article>
-      </section>
-
-      <section id="work-experience">
-        <h3>Experience</h3>
-        <% workExperiences.forEach(function(experience, index){ %>
-        <article id="experience-<%- index %>">
-          <header>
-            <h4><%- experience.title %></h4>
-          </header>
-          <div class="description">
-            <p>
-              <%- experience.description %>
-            </p>
           </div>
-          <footer>
-            <ul>
-              <% experience.skills.forEach(function(skill, index){ %>
-              <li><%- skill.name %></li>
-              <% }); %>
-            </ul>
-          </footer>
+
         </article>
-
-        <% }); %>
       </section>
-
-      <section id="education">
-        <h3>Education</h3>
-        <% educationExperiences.forEach(function(experience, index){ %>
-        <article id="experience-<%- index %>">
-          <header>
-            <p>
-              <strong><%- experience.description %></strong>
-            </p>
-          </header>
-        </article>
-
-        <% }); %>
-      </section>
-
-      <section id="languages">
-        <h3>Languages</h3>
-        <ul>
-          <% languages.forEach(function(language, index){ %>
-          <li>
-            <span><%- language.name %></span> -
-            <span><%- language.level %></span>
-          </li>
-          <% }); %>
-        </ul>
-      </section>
-
-      <section id="skills">
-        <h3>Skills</h3>
-        <ul>
-          <% skills.forEach(function(skill, index){ %>
-          <li>
-            <span><%- skill.name %></span> -
-            <span><%- skill.level %></span>
-          </li>
-          <% }); %>
-        </ul>
-      </section>
-    </main>
+   </main>
     <footer>
       <ul>
         <li>
